@@ -15,6 +15,7 @@ var historyFileLocation = fmt.Sprintf("%s/.zsh_history", os.Getenv("HOME"))
 var bakHistoryFileLocation = fmt.Sprintf("%s_bak", historyFileLocation)
 
 func backup() {
+	fmt.Println("backing up current .zsh_history")
 	history, err := os.Open(historyFileLocation)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error opening file: %v\n", err)
@@ -40,11 +41,10 @@ func backup() {
 
 func main() {
 
-	fmt.Println("scanning and updating", historyFileLocation)
 	backup()
+	fmt.Println("scanning and updating", historyFileLocation)
 	fmt.Println("backed up current .zsh_history (this will contain sensitive information on first run)")
 
-	// var commands []string
 	var currentCommand strings.Builder
 	history, err := os.Open(bakHistoryFileLocation)
 
@@ -70,7 +70,6 @@ func main() {
 		// If line starts with : and we have a previous command, append it
 		if strings.HasPrefix(line, ":") {
 			if currentCommand.Len() > 0 {
-				// commands = append(commands, strings.TrimSpace(currentCommand.String()))
 				newHistory.WriteString(fmt.Sprintf("%s\n", strings.TrimSpace(currentCommand.String())))
 				currentCommand.Reset()
 			}
