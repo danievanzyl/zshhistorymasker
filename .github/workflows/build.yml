@@ -34,4 +34,4 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Create Build
         run: |
-          go build -X main.version=$(git describe --tags --always) -o zshhistorymasker cmd/zshhistorymasker/main.go
+          go build -ldflags "-X main.version=$(git describe --tags --always)" -o zshhistorymasker cmd/zshhistorymasker/main.go
