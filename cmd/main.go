@@ -10,6 +10,7 @@ import (
 	sensitivepatterns "github.com/danievanzyl/zshhistorymasker/pkg/sensitive_patterns"
 )
 
+var version = ""
 var historyFileLocation = fmt.Sprintf("%s/.zsh_history", os.Getenv("HOME"))
 
 var bakHistoryFileLocation = fmt.Sprintf("%s_bak", historyFileLocation)
@@ -41,6 +42,7 @@ func backup() {
 
 func main() {
 
+	fmt.Println("version:", version)
 	backup()
 	fmt.Println("scanning and updating", historyFileLocation)
 	fmt.Println("backed up current .zsh_history (this will contain sensitive information on first run)")

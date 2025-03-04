@@ -1,0 +1,60 @@
+name: build
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Download Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.24
+        id: go
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v4
+
+      - name: Get dependencies
+        run: |
+          go get -v -t -d ./...
+      # Runs a set of commands using the runners shell
+      - name: Create Release
+        run: |
+          # ls -l $GITHUB_WORKSPACE
+          # cd $GITHUB_WORKSPACE
+          go build -X main.version=$(git describe --tags --always) -o zshhistorymasker cmd/zshhistorymasker/main.go
+          # # Use the GitHub Bot user for Git and GitHub IAM.
+          # git config user.name "github-actions[bot]"
+          # git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # # Specify name of app for packaging & distribution purposes; Compress to a tar.gz.
+          # export APP="joke"
+          # mkdir dist
+          # tar cf dist/"${APP}-0.0.${GITHUB_RUN_NUMBER}.tar.gz" "$APP"
+
+          # # Generate Brew formula file using the template file.
+          # erb "${APP}.erb" > "${APP}.rb"
+
+          # # Commit the new complete formula file back to the repository.
+          # git add "${APP}.rb"
+
+          # # Commit and push file to repository.
+          # git commit -m "$APP release 0.0.${GITHUB_RUN_NUMBER}"
+          # git push
+
+          # # Create and publish release to repository.
+          # gh release create v0.0.${GITHUB_RUN_NUMBER} ./dist/*.tar.gz --title "0.0.${GITHUB_RUN_NUMBER}" --generate-notes
