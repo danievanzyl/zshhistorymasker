@@ -20,13 +20,33 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  build-linux:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        platform: [linux/amd64, linux/arm64, macos/arm64]
+        platform: [linux/amd64, linux/arm64]
     # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Download Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.24
+        id: go
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v4
+
+      - name: Get dependencies
+        run: |
+          go mod tidy
+      # Runs a set of commands using the runners shell
+      - name: Create Build
+        run: |
+          pwd
+          go build -ldflags "-X main.version=$(git describe --tags --always)" -o zshhistorymasker cmd/main.go
+  build-macos:
+    # The type of runner that the job will run on
+    runs-on: macos-latest
     steps:
       - name: Download Go
         uses: actions/setup-go@v2
