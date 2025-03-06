@@ -1,6 +1,6 @@
 version: 2
 
-project_name: zshistorymasker
+project_name: zshhistorymasker
 
 # before:
 #   hooks:
@@ -11,12 +11,10 @@ project_name: zshistorymasker
 
 builds:
   - main: ./cmd/
-  - env:
+    env:
       - CGO_ENABLED=0
-    # goos:
-    #   - linux
-    #   - windows
-    #   - darwin
+    goos:
+      - darwin
 
 archives:
   - formats: ["tar.gz"]
@@ -40,7 +38,7 @@ changelog:
       - "^test:"
 
 brews:
-  - name: zshistorymasker
+  - name: zshhistorymasker
     commit_author:
       name: danievanzyl
       email: danie.van.zyl@gmail.com
@@ -49,9 +47,9 @@ brews:
     description: "Remove sensitive data from your zsh history"
     license: "MIT"
     install: |
-      bin.install "zshistorymasker"
+      bin.install "zshhistorymasker"
     test: |
-      system "#{bin}/zshistorymasker --version"
+      system "#{bin}/zshhistorymasker --version"
     # Repository to push the generated files to.
     repository:
       owner: danievanzyl
