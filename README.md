@@ -1,2 +1,3 @@
 # zshhistorymasker
 testing
+i§:§
