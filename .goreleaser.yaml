@@ -10,6 +10,7 @@ project_name: zshistorymasker
 #     - go generate ./...
 
 builds:
+  - main: ./cmd/
   - env:
       - CGO_ENABLED=0
     # goos:
