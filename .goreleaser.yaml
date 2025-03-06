@@ -54,6 +54,6 @@ brews:
     # Repository to push the generated files to.
     repository:
       owner: danievanzyl
-      name: homebrew-zshistorymasker
+      name: homebrew-zshhistorymasker
       branch: main
       token: "{{ .Env.GITHUB_TOKEN }}"
