@@ -1,1 +1,2 @@
 # zshhistorymasker
+testing
