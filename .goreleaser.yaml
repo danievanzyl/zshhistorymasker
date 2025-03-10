@@ -45,7 +45,7 @@ brews:
     commit_msg_template: "Brew formula update for {{ .ProjectName }} version {{ .Tag }}"
     directory: Formula
     description: "Remove sensitive data from your zsh history"
-    license: "MIT"
+    license: "The Unlicense"
     install: |
       bin.install "zshhistorymasker"
     test: |

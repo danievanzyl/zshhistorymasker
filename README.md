@@ -24,15 +24,15 @@ Run the tool to scan and sanitize your Zsh history:
 
 ```bash
 zshhistorymasker
+fc -R ~/.zsh_history
 ```
 
 ### Options:
 
 | Flag              | Description                              |
 | ----------------- | ---------------------------------------- |
-| `-b`, `--backup`  | Create a backup before modifying history |
-| `-p`, `--pattern` | Use custom patterns for detection        |
-| `-v`, `--verbose` | Enable verbose output                    |
+| `-p`, `--pattern` | Use custom patterns for detection (todo) |
+| `-v`, `--version` | Version information                      |
 | `-h`, `--help`    | Show help information                    |
 
 Example:
