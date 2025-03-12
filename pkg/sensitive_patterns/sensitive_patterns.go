@@ -1,6 +1,7 @@
 package sensitivepatterns
 
 import (
+	"fmt"
 	"regexp"
 	"strings"
 )
@@ -17,6 +18,16 @@ var Patterns = []*regexp.Regexp{
 	regexp.MustCompile(`Bearer\s+([a-zA-Z0-9._\-]+)`),
 	// GitHub tokens
 	regexp.MustCompile(`gh[ps]_[0-9a-zA-Z]{36}`),
+}
+
+func UpdatePatterns(patterns []string) {
+	for _, pattern := range patterns {
+		Patterns = append(Patterns, regexp.MustCompile(pattern))
+	}
+
+	for _, p := range Patterns {
+		fmt.Println("using the following pattern:", p.String())
+	}
 }
 
 func MaskSensitiveInfo(text string) string {
