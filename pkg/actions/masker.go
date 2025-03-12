@@ -13,6 +13,7 @@ import (
 
 func Mask(ctx context.Context, cmd *cli.Command) error {
 
+	sensitivepatterns.UpdatePatterns(cmd.StringSlice("mask-pattern"))
 	var currentCommand strings.Builder
 	history, err := os.Open(cmd.String("bak-history"))
 
