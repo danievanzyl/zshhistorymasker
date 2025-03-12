@@ -38,7 +38,7 @@ fc -R ~/.zsh_history
 Example:
 
 ```bash
-zsh-history-mask -b -p ".*password=.*"
+zsh-history-mask -p ".*password=.*"
 ```
 
 ## 📊 How It Works
@@ -53,7 +53,6 @@ zsh-history-mask -b -p ".*password=.*"
 - [ ] Enhance detection with regex patterns
 - [ ] Add support for other shell histories (e.g., Bash)
 - [ ] Implement dry-run mode for safe previews
-- [ ] Customizable regexp
 
 ## 🤝 Contributing
 
