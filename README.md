@@ -38,7 +38,7 @@ fc -R ~/.zsh_history
 Example:
 
 ```bash
-zsh-history-mask -p ".*password=.*"
+zshhistorymasker -p ".*password=.*" -p ".*api_key=.*"
 ```
 
 ## 📊 How It Works
